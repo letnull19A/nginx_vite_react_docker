@@ -1,0 +1,22 @@
+version: '3'
+name: 'nginx_react_typescript_docker'
+
+services:
+  app:
+    image: vite_app
+    ports:
+      - "8080:8080"
+    restart: always
+    volumes:
+      - "./nginx/nginx.conf://etc/nginx/nginx.conf:ro"
+    networks:
+      network:
+         ipv4_address: 3.10.0.64
+
+networks:
+  network:
+    driver: bridge
+    ipam:
+      config:
+          - subnet: 3.10.0.0/16
+            gateway: 3.10.0.1
