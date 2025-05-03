@@ -3,15 +3,15 @@ FROM node as vite-app
 WORKDIR /app/client
 COPY ./client .
 
-RUN ["npm", "i"]
-RUN ["npm", "run", "build"]
+RUN "npm i && \
+     npm run build"
 
 FROM nginx:alpine
 
 WORKDIR /usr/share/nginx/
 
-RUN rm -rf html
-RUN mkdir html
+RUN "rm -rf html && \
+     mkdir html"
 
 WORKDIR /
 
